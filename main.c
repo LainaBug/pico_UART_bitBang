@@ -49,7 +49,7 @@ int main(void) {
     // }
 
     while (true) {
-        sendByte(UART_TX_PIN, 170);
+        sendMessage(UART_TX_PIN, "Hello World");
         sleep_ms(500);
     }
 

@@ -10,6 +10,8 @@
 
 #define BITPERIOD 104
 
+
+
 void sendByte(int TX_PIN, uint8_t byte) {
 
     //set tx line low for one bit period (start bit!)
@@ -29,3 +31,9 @@ void sendByte(int TX_PIN, uint8_t byte) {
     sleep_us(BITPERIOD);
 }
 
+void sendMessage(int TX_PIN, char* message) {
+    uint8_t* messageDecimal = (uint8_t*)message;
+    for (int i = 0; i < strlen(messageDecimal); i++) {
+        sendByte(TX_PIN, messageDecimal[i]);
+    }
+}

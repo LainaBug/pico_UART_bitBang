@@ -3,6 +3,7 @@
 #include "string.h"
 
 #define DATA_PIN 0
+#define BITPERIOD 104
 
 int main(void) {
     stdio_init_all();
@@ -11,7 +12,7 @@ int main(void) {
     gpio_put(DATA_PIN, 1);
 
     while (true) {
-        sendMessage(DATA_PIN, "Hello World");
+        sendMessage(BITPERIOD, DATA_PIN, "Hello World");
         sleep_ms(500);
     }
 }

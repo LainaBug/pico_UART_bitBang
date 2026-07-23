@@ -12,8 +12,8 @@ pico_sdk_init()
 
 add_executable(pico_UART_bitBang
         main.c
-        UART_bitBang_Functions.h
-        UART_BitBang_Functions.c)
+        uartResources.h
+        uartResources.c)
 
 target_link_libraries(pico_UART_bitBang pico_stdlib hardware_uart) # Necessary for the stdlib.h to work
 

@@ -15,7 +15,11 @@ add_executable(pico_UART_bitBang
         uartResources.h
         uartResources.c)
 
-target_link_libraries(pico_UART_bitBang pico_stdlib hardware_uart) # Necessary for the stdlib.h to work
+target_link_libraries(pico_UART_bitBang
+        pico_stdlib
+        hardware_uart
+        pico_cyw43_arch_none     # we need Wifi to access the GPIO, but we don't need anything else
+)
 
 pico_add_extra_outputs(pico_UART_bitBang) # Generates files such as .uf2 and others rather than just a .elf file when built
 

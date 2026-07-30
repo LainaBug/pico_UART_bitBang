@@ -3,22 +3,17 @@
 #endif //PICO_UART_BITBANG_UART_BITBANG_FUNCTIONS_H
 
 //declare the uartData struct
-struct uartData {
-    int bitPeriod;
-    int dataPin;
-    int messageLength;
-    int structSize;
-    char message[]; //note that flexible arrays declared in a struct should be put at the end!
-};
+typedef struct uartData {
+    const int dataPin;
+    const char* message;
+} uartData;
 
-// Function that allocates memory and initializes the uartData struct for the user
-struct uartData* uartDataInit(int bitPeriod, int dataPin, char message[]);
-/* In the above "uartData*" is a pointer to a uartData struct...
- */
+extern uartData data;
 
-// Function that sends a byte of data to the uart data pin
-void sendByte(int bitPeriod, int dataPin, int8_t data);
+// Function that sets the GPIO TX pin to high or low accordingly
+bool sendBit(int dataPin, int8_t byte);
 
-// Function that sends a message to the uart data pin
-void sendMessage(struct uartData *data);
+// Function to send the UART message, bit by bit
+void sendNextBit(const uartData *userData);
 
+void gpioToggleTest(const uartData *userData);

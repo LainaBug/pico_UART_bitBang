@@ -5,6 +5,8 @@
 
 #include <stdio.h>
 
+#include "timerInterrupts.h"
+
 
 bool sendBit(const int dataPin, const int8_t byte) { // bitIndex should only go from 0-9
     const uint16_t mask1 = 512;
@@ -14,13 +16,11 @@ bool sendBit(const int dataPin, const int8_t byte) { // bitIndex should only go 
     const uint16_t updatedData =(byte16 << 1) | mask1;
     bool data_bit = (updatedData >> bitIndex) & mask2;
     gpio_put(dataPin, data_bit);
-    //printf("%d\n",data_bit);
     if (bitIndex < 9) {
        (bitIndex)++;
         return false;
     }
     bitIndex = 0;
-    //printf("Starting Next Byte...\n");
     return true;
 }
 
@@ -32,10 +32,6 @@ void sendNextBit(const uartData *userData) {
     }
     if (byteIndex == strlen(userData->message)) {
         byteIndex = 0;
-        //printf("-----Restarting Message!----------------\n\n\n");
+        data.state = UART_DONE;
     }
-}
-
-void gpioToggleTest(const uartData *userData) {
-    gpio_xor_mask(1ul << userData->dataPin);
 }

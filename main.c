@@ -20,7 +20,7 @@ repeating_timer_t idleTimer;
 int idleTimerID = IDLE_TIMER_ID;
 
 
-uartData data = {UART_READY, DATA_PIN,  "Hello World!"};
+uartData data = {UART_READY, DATA_PIN,  "Laina Can't Be Stopped !"};
 
 
 
